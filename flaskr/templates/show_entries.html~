@@ -1,4 +1,4 @@
-{% extends layout.html %}
+{% extends "layout.html" %}
 {% block body %}
 	{% if session.logged_in %}
 		<form action="{{ url_for('add_entry') }}" method=post class=add-entry>
@@ -7,6 +7,7 @@
 			 	<dd><input type=text size=30 name=title>
 			 	<dt>Text:
 			 	<dd><textarea name=text rows=5 cols=40></textarea>
+			 	<dd><input type=text name=time>
 			 	<dd><input type=submit value=Share>
 			 </dl>
 		</form>
