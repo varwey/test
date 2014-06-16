@@ -31,8 +31,8 @@ nav{display: none;}
 <script src="/static/js/jquery.min.js"></script>
 <script type="text/javascript">
 $('.nav_list').click(function () {
-	$('li').next('nav').hide();
 	if ($(this).next('nav').css('display')=='none') {
+	   $('li').next('nav').hide();
 	   $(this).next('nav').show();   	
 	}else{
 		$(this).next('nav').hide();

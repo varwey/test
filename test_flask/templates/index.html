@@ -1,38 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8" />
-<title>flask</title>
-<style type="text/css">
-.nav_list {cursor: pointer;}
-li{width: 10%;}
-nav{display: none;}
-</style>
-</head>
-<body>
-	<h1>Hello Flask !!! My name is {{username|default('jim')}}</h1>
-	{% if nav_list %}
-	<ul>
-	   {% for key, value in nav_list.items() %}
-	   <li class="nav_list">{{key}}</li>
-		   <nav>
-			   <ul>
-			      {% for v in value %}
-			         <li><a href="#">{{v}}</a></li>
-			      {% endfor %}
-			   </ul>
-		   </nav>
-	   {% endfor %}
-	</ul>
-	{% endif %}
-	<img src="/static/img/animal_1.jpg" alt="animals">
-	<img src="{{image}}" alt="animals">
-</body>
-<script src="/static/js/jquery.min.js"></script>
-<script type="text/javascript">
-$('.nav_list').click(function () {
-	$('li').next('nav').hide();
-	$(this).next('nav').show();
-})
-</script>
-</html>
+{% extends "layout.html" %}
+{% block body %}
+  <h1>Overview</h1>
+  <p>Do you wang to <a href="{{url_for('login')}}">log in?</a></p>
+{% endblock %}
