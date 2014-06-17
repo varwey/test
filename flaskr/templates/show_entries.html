@@ -16,7 +16,7 @@
 	<ul class=entries>
 	{% for entry in entries|reverse %}
 		<li><h2>{{ entry.title|replace('a', 'b') }}</h2>{{ entry.text|safe }}
-		<footer>{{ entry.datetime|default('none') }}</footer>
+		<footer>{{ entry.datetime|default('none') }}</footer>{{ double(entry.datetime)|join(',') }}
 	{% else %}
 		<li><em>Unbelievable.  No entries here so far</em>	
 	{% endfor %}
