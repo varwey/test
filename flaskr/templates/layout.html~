@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <title>Flaskr</title>
-<link rel=style type=text/css href="{{ url_for('static', filename='css/style.css') }}"></link>
+<link type='text/css' href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet"></link>
+
 </head>
 <body>
 <div>
