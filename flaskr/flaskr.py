@@ -12,6 +12,7 @@ import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
         render_template, flash
 from config import *
+from flask.view import View
 
 #DATABASE = '/tmp/flaskr.db'
 #DEBUG = True
@@ -54,6 +55,13 @@ def before_request():
 @app.teardown_request
 def teardown_request(exception):
     g.db.close()
+
+class ShowUsers(View):
+
+    def dispath_request(self):
+        return render_template('users.html', objects = ['alen', 'ben', 'kate', 'jim'])
+
+app.add_url_rule('/user/', ShowUsers.as_view('show_users'))
 
 @app.route('/')
 def show_entries():
