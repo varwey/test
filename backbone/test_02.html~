@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>backbone-model</title>
+</head>
+<body>
+</body>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/jquery-1.10.2.js"></script>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/underscore.js"></script>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/backbone.js"></script>
+<script>
+(function ($) {
+	var Book = Backbone.Model.extend({
+		defaults: {
+			title: 'default'
+		},
+		initialize: function() {
+			console.log('Hey, you create me!');
+		}
+	});
+	var BookShelf = Backbone.Collection.extend({
+		model: Book
+	});
+	var book1 = new Book({title: 'book1'});
+	var book2 = new Book({title: 'book2'});
+	var book3 = new Book({title: 'book3'});
+	
+	var bookShelf = new BookShelf;
+
+	//var bookShelf = new BookShelf([book1, book2, book3]);
+	
+	bookShelf.add(book1);
+	bookShelf.add(book1);
+	bookShelf.add(book1);
+	
+	bookShelf.remove(book3);
+	
+	bookShelf.each(function(book) {
+		console.log(book.get('title'));
+	});
+})(jQuery);
+</script>
+</html>
