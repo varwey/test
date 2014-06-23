@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block header %}
-
+<link type='text/css' href="{{ url_for('static', filename='css/todo.css') }}" rel="stylesheet"></link>
 {% endblock %}
 {% block body %}
  <div id="todoapp">
@@ -52,7 +52,7 @@
     <% } %>
     <div class="todo-count"><b><%= remaining %></b> <%= remaining == 1 ? 'item' : 'items' %> left</div>
   </script>
-<script type="text/javascript">
+<!--<script type="text/javascript">
 $(function() {
 	var Todo = Backbone.Model.extend({
 		default: function() {
@@ -167,7 +167,7 @@ $(function() {
 			}
 			this.allCheckbox.checked = !remaining;
 		},
-		addOne: function() {
+		addOne: function(todo) {
 			var view = new TodoView({model: todo});
 			this.$("#todo-list").append(view.render().el);
 		},
@@ -192,5 +192,5 @@ $(function() {
 	});
 	var App = new AppView;
 });
-</script>
+</script>-->
 {% endblock %}

@@ -36,7 +36,7 @@
 
 
   <!-- Templates -->
-
+<script src="{{url_for('static', filename='js/todo.js')}}"></script>
   <script type="text/template" id="item-template">
     <div class="view">
       <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %> />
@@ -52,7 +52,7 @@
     <% } %>
     <div class="todo-count"><b><%= remaining %></b> <%= remaining == 1 ? 'item' : 'items' %> left</div>
   </script>
-<script type="text/javascript">
+<!--<script type="text/javascript">
 $(function() {
 	var Todo = Backbone.Model.extend({
 		default: function() {
@@ -167,7 +167,7 @@ $(function() {
 			}
 			this.allCheckbox.checked = !remaining;
 		},
-		addOne: function() {
+		addOne: function(todo) {
 			var view = new TodoView({model: todo});
 			this.$("#todo-list").append(view.render().el);
 		},
@@ -192,5 +192,5 @@ $(function() {
 	});
 	var App = new AppView;
 });
-</script>
+</script>-->
 {% endblock %}
