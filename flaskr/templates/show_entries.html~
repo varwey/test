@@ -1,4 +1,27 @@
 {% extends "layout.html" %}
+{% block header %}
+<script type="text/javascript" >
+window.Message = Backbone.Model.extend({
+	validate: function(attrs) {
+		for (var key in attrs) {
+			if (attr[key] == '') {
+				return key + "不能为空";
+			}
+		}
+	}
+});
+window.MessageList = Backbone.Collection.extend({
+	model: Message,
+});
+window.MessageView = Backbone.View.extend({
+	tagName: 'tr',
+	template: _.template($('#message_item')),
+	events: {
+
+	},
+});
+</script>
+{% endblock %}
 {% block body %}
 	{% if session.logged_in %}
 		<form action="{{ url_for('add_entry') }}" method=post class=add-entry>
@@ -15,8 +38,8 @@
 	{% endif %}
 	<ul class=entries>
 	{% for entry in entries|reverse %}
-		<li><h2>{{ entry.title|replace('a', 'b') }}</h2>{{ entry.text|safe }}
-		<footer>{{ entry.datetime|default('none') }}</footer>{{ double(entry.datetime)|join(,) }}
+		<li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
+		<footer>{{ entry.datetime|default('none') }}</footer>&nbsp;<button id="btn">del</button>
 	{% else %}
 		<li><em>Unbelievable.  No entries here so far</em>	
 	{% endfor %}

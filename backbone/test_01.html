@@ -12,8 +12,8 @@
 <script>
 (function ($) {
 	var Man = Backbone.Model.extend({
-		url: '/man/'
-		initialize: function(){
+		url: '/login/',
+		initialize: function() {
 			console.log('Hey, you create me!');
 			//绑定监听
 			this.on('change:name', function() {
@@ -57,6 +57,7 @@
 	man.set({name: ''});
 	//man.set({name: ''}), {'validate': true};
 	man.save();
+	
 })(jQuery);
 </script>
 </html>

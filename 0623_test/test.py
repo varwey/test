@@ -11,8 +11,9 @@ from contextlib import closing
 import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
         render_template, flash
-from config import *
-from flask.views import View
+from flask.view import View
+
+from static.conf.config import *
 
 #DATABASE = '/tmp/flaskr.db'
 #DEBUG = True
@@ -105,9 +106,6 @@ def logout():
     flash('You already logged out !!!')
     return redirect(url_for('show_entries'))
 
-@app.route('/test')
-def test():
-    return render_template('test.html')
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0')

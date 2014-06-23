@@ -3,11 +3,20 @@
 <head>
 <meta charset="utf-8" />
 <title>Flaskr</title>
-<link type='text/css' href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet"></link>
+<link type='text/css' href="{{ url_for('static', filename='css/style.less') }}" rel="stylesheet/less"></link>
+<script src="{{url_for('static', filename='js/jquery.js')}}"></script>
+<script src="{{url_for('static', filename='js/less-1.7.1.min.js')}}" type="text/javascript"></script>
+<script src="{{url_for('static', filename='js/json2.js')}}"></script>
+
+<script src="{{url_for('static', filename='js/underscore.js')}}" type="text/javascript"></script>
+<script src="{{url_for('static', filename='js/backbone.js')}}"></script>
+<script src="{{url_for('static', filename='js/localStorage.js')}}"></script>
+<!-- <script src="{{url_for('static', filename='js/backbone_test.js')}}"></script> -->
+{% block header %}{% endblock %}
 </head>
 <body>
 <div>
-	<h1>Flaskr</h1>
+	<h1>Test</h1>
 		<div class=metanav>
 		{% if session.logged_in %}
 			<a href="{{ url_for('logout') }}">log out</a>

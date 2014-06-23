@@ -1,0 +1,11 @@
+(function($){
+	var User = Backbone.Model.extend({
+		url: '/login/'
+		initialize: function() {
+			console.log('Ok!!!');
+			this.listenTo('change', function() {
+				console.log('changed name');
+			});
+		}
+	});
+})(jQuery)
