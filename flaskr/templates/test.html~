@@ -33,32 +33,14 @@
     <a href="http://jgn.me/">J&eacute;r&ocirc;me Gravel-Niquet</a>.
     <br />Rewritten by: <a href="http://addyosmani.github.com/todomvc">TodoMVC</a>.
   </div>
-
-
-  <!-- Templates -->
-
-  <script type="text/template" id="item-template">
-    <div class="view">
-      <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %> />
-      <label><%- title %></label>
-      <a class="destroy"></a>
-    </div>
-    <input class="edit" type="text" value="<%- title %>" />
-  </script>
-
-  <script type="text/template" id="stats-template">
-    <% if (done) { %>
-      <a id="clear-completed">Clear <%= done %> completed <%= done == 1 ? 'item' : 'items' %></a>
-    <% } %>
-    <div class="todo-count"><b><%= remaining %></b> <%= remaining == 1 ? 'item' : 'items' %> left</div>
-  </script>
-<!--<script type="text/javascript">
+<!--<script src="{{url_for('static', filename='js/todo.js')}}"></script>-->
+<script>
 $(function() {
 	var Todo = Backbone.Model.extend({
-		default: function() {
+		defaults: function() {
 			return {
-				title: "empty todo",
-				order: Todo.nextOrder(),
+				title: "empty todo...",
+				order: Todos.nextOrder(),
 				done: false
 			};
 		},
@@ -99,7 +81,6 @@ $(function() {
 		initialize: function() {
 			this.listenTo(this.model, 'change', this.render);
 			this.listenTo(this.model, 'destroy', this.remove);
-			console.log('aaa' + $('#item-template').html());
 		},
 		render: function() {
 			this.$el.html(this.template(this.model.toJSON()));
@@ -137,7 +118,7 @@ $(function() {
 		events: {
 			"keypress #new-todo": "createOnEnter",
 			"click #clear-completed": "clearCompleted",
-			"click #toggle-all": "toggleAllComelete"
+			"click #toggle-all": "toggleAllComplete"
 		},
 		initialize: function() {
 			this.input = this.$("#new-todo");
@@ -159,8 +140,8 @@ $(function() {
 			
 			if (Todos.length) {
 				this.main.show();
-				this.footer.show();
-				this.footer.html(this.statsTemplate({done: done, remaining: remaining}))
+				//this.footer.show();
+				this.footer.html(this.statsTemplate({done: done, remaining: remaining})).show();
 			} else {
 				this.main.hide();
 				this.footer.hide();
@@ -187,10 +168,25 @@ $(function() {
 		},
 		toggleAllComplete: function() {
 			var done = this.allCheckbox.checked;
-			Todos.each(function(todo) {todo.save({'done': done})});
+			console.log(done);
+			Todos.each(function(todo) {console.log(todo); todo.save({'done': done}); });
 		}
 	});
 	var App = new AppView;
 });
-</script>-->
+</script>
+<script type="text/template" id="item-template">
+	<div class="view">
+   	<input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %> />
+   	<label><%- title %></label>
+   	<a class="destroy"></a>
+	</div>
+	<input class="edit" type="text" value="<%- title %>" />
+</script>
+<script type="text/template" id="stats-template">
+	<% if (done) { %>
+	<a id="clear-completed">Clear <%= done %> completed <%= done == 1 ? 'item' : 'items' %></a>
+	<% } %>
+	<div class="todo-count"><b><%= remaining %></b> <%= remaining == 1 ? 'item' : 'items' %> left</div>
+</script>
 {% endblock %}

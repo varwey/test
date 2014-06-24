@@ -23,6 +23,112 @@
 	
 	var app_route = new AppRouter;
 	Backbone.history.start();
+
+
+    var hacker = new Backbone.Model({
+          name: "<script>alert('xss')</script>"
+          });
+
+    console.log(hacker.clear());
+    console.log(hacker.has('name'));
+    console.log(hacker.set({password: "****"}));
+    console.log('password: ' + hacker.get('password'));
+
+    var Varwey = Backbone.Model.extend({
+        defaults: {
+        "name": 'varwey',
+        "age" : '24',
+        "height": '174cm',
+        "weight": '73kg'
+        }
+    });
+
+    console.log('My name is ' + (new Varwey).get('name'));
+    var varwey = new Varwey;
+    console.log(JSON.stringify(varwey));
+    console.log(varwey.toJSON());
+
+    var Test = Backbone.Model.extend({
+        validate: function(attrs, options) {
+            if (attrs.end < attrs.start) {
+                console.log('I am running!!');
+                return "can't end before it starts";
+            }
+        }
+    });
+
+    var tests = new Test({
+              title: "test: The beginning"
+              });
+
+    tests.on("invalid", function(model, error) {
+              console.log(model.get('title') + " " + error);
+              });
+
+    tests.save({start: 10, end: 5}, {
+              error: function() {
+                  console.log('failed');
+                    }
+                    });
+
+    tests.set({start: 15, end: 10});
+
+    console.log('ISVALID: ' + tests.isValid());
+
+    if (!tests.isValid()) {
+          console.log('This is isValid ' + tests.get('title') + " " + tests.validationError);
+    }
+
+    Backbone.sync = function(method, model) {
+          console.log(method + ": " +JSON.stringify(model));
+            model.set('id', 1);
+    };
+
+    var book = new Backbone.Model({
+              title: "The Rough Riders",
+                author: "Theodore Roosevelt"
+                });
+
+    book.save();
+    book.save({author: 'Teddy'});
+
+    book.save("author", 'sdfs', {error: function() {
+              console.log('failed');
+              }});
+
+    book.save({author: 'aaa', title: 'sss', 'id': 2});
+
+    book.destroy({success: function(model, response) {
+              console.log('destroy: ' + response);
+              }});
+
+
+    var Book = Backbone.Model.extend({urlRoot: 'http://localhost:5000'});
+    var solaris = new Book({id: "test"});
+    console.log(solaris.url());
+
+    var bill = new Backbone.Model({
+              name: "Bill Smith"
+                
+              });
+
+    bill.on("change:name", function(model, name) {
+              console.log("Change name from " + bill.previous("name") + " to " + name);
+              });
+
+    bill.set({name: "Bill Jones"});
+
+
+    var stoo = new Backbone.Collection([
+              {name: 'zhangsan', age: 14},
+                {name: 'lisi', age: 19},
+                  {name: 'wangwu'}
+                  ]);
+
+    var names = stoo.pluck('age');
+
+    console.log(JSON.stringify(names));
+
 })(jQuery);
 </script>
 </html>
