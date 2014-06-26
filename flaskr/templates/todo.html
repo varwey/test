@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>test</title>
+    <style>
+        .destroy{cursor: pointer;}
+    </style>
+</head>
+<body>
+<div id="todoapp">
+    <header>
+        <h1>Todos</h1>
+        <input type="text" placeholder="What needs to be done?" id="new-todo">
+    </header>
+    <ul id="todo-list"></ul>
+</div>
+</body>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/jquery-1.10.2.js"></script>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/underscore.js"></script>
+<script src="http://the5fireblog.b0.upaiyun.com/staticfile/backbone.js"></script>
+<script src="file:///home/wangweiwei/test/flaskr/static/js/localStorage.js"></script>
+<script type="text/template" id="list-template">
+    <div>
+        <input type="checkbox" <%= status ? 'checked="checked"' : '' %> class="list-status">
+        <label><%= title%></label>
+        <a class="destroy">删除</a>
+    </div>
+</script>
+<script type="text/javascript">
+    var TodoModel = Backbone.Model.extend({
+        defaults: {
+            title: 'Nothing to do',
+            status: false
+        },
+        urlRoot: '/todo',
+        connectDatabase: function() {
+            this.save(this, {
+                error: function() {
+                    console.log('Error');
+                },
+                success: function() {
+                    console.log('Success');
+                }
+            });
+        }
+        //look: function() {
+        //   console.log('Model title: ' + this);
+        //}
+    });
+
+    var TodoCollection = Backbone.Collection.extend({
+        model: TodoModel,
+        url: '/todo',
+        initialize: function(option) {
+
+        }
+    });
+
+    var todoCollection = new TodoCollection();
+
+    //todoCollection.fetch();
+
+    var TodoListView = Backbone.View.extend({
+        tagName: 'li',
+        template: _.template($('#list-template').html()),
+        initialize: function() {
+            this.listenTo(this.model, 'change', this.render);
+            this.listenTo(this.model, 'destroy', this.remove);
+        },
+        events: {
+            "click a.destroy": "drop",
+            "click .list-status": "liststatus"
+        },
+        //template: _.template("Hello World!"),
+        render: function() {
+            console.log("I got " + this.model.get('title'));
+            //var title = this.model.get('title');
+            //    todoItem = $("<div>");
+            //todoItem.html("<span><input type='checkbox'>" +
+            //        "</span><span>" + title + "</span>" +
+            //        "<a class='destroy'>删除</a>");
+            //$("#todo-list").append(todoItem);
+            this.$el.html(this.template(this.model.toJSON()));
+            return this;
+        },
+        drop: function() {
+            console.log(this.model);
+            this.model.destroy();
+        },
+        liststatus: function() {
+            console.log('liststatus: ' + this.model.get('status'));
+            this.model.save({status: !this.model.get('status')});
+            console.log(this.model.get('status'));
+        }
+    });
+    var TodoAppView = Backbone.View.extend({
+        el: $("#todoapp"),
+        initialize: function(options) {
+            this.listenTo(todoCollection, 'add', this.addOne);
+
+            todoCollection.fetch();
+        },
+        events: {
+            "keypress #new-todo": "catch"
+        },
+
+        addOne: function(todo) {
+            //console.log('addone');
+            var view = new TodoListView({model: todo});
+            this.$("#todo-list").append(view.render().el)
+        },
+
+        catch: function(e) {
+            var element = this.$("#new-todo");
+            if (e.keyCode == 13) {
+                var title = this.$el.find("#new-todo").val();
+                if (title == '') {
+                    console.log('error');
+                    return;
+                }
+                //console.log(this.input.val());
+                todoCollection.create({title: title});
+                //console.log(todoModel.get('title'));
+                //var todoItem = $("<div>");
+                //todoItem.html("<span><input type='checkbox'></span><span>" + element.val()  + "</span>");
+                //$("#todolist").append(todoItem);
+                element.val("");
+            }
+        },
+        render: function() {
+            return this;
+        }
+    });
+
+    var todoApp = new TodoAppView();
+</script>
+</html>

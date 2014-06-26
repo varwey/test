@@ -46,6 +46,7 @@ $(function() {
 		},
 
 		toggle: function() {
+            console.log('T am used');
 			this.save({done: !this.get("done")});
 		}
 	});
@@ -83,6 +84,7 @@ $(function() {
 			this.listenTo(this.model, 'destroy', this.remove);
 		},
 		render: function() {
+            console.log("render:sdasd");
 			this.$el.html(this.template(this.model.toJSON()));
 			this.$el.toggleClass('done', this.model.get('done'));
 			this.input = this.$('.edit');
@@ -96,6 +98,7 @@ $(function() {
 			this.input.focus();
 		},
 		close: function() {
+            console.log("close");
 			var value = this.input.val();
 			if (!value) {
 				this.clear();
@@ -108,6 +111,7 @@ $(function() {
 			if (e.keyCode == 13) this.close();
 		},
 		clear: function() {
+            console.log('clear');
 			this.model.destroy();
 		}
 	});	
@@ -149,16 +153,20 @@ $(function() {
 			this.allCheckbox.checked = !remaining;
 		},
 		addOne: function(todo) {
+            console.log(todo);
 			var view = new TodoView({model: todo});
 			this.$("#todo-list").append(view.render().el);
 		},
 		addAll: function() {
+            console.log('addall');
 			Todos.each(this.addOne, this);
 		},
 		createOnEnter: function(e) {
 			if (e.keyCode != 13) return;
 			if (!this.input.val()) return;
-			
+			//var shi = new Todo({title: this.input.val()});
+            //Todos.add(shi);
+            //console.log("create");
 			Todos.create({title: this.input.val()});
 			this.input.val('');
 		},

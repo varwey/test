@@ -13,6 +13,7 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
         render_template, flash
 from config import *
 from flask.views import View
+import json
 
 #DATABASE = '/tmp/flaskr.db'
 #DEBUG = True
@@ -24,6 +25,9 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 #app.config['SERVER_NAME'] = '127.0.0.1:5000'
 #app.config.from_envvar('FLASK_SETTINGS', silent=True)
+
+
+todo = [{'title': 'asdsa', 'status': False}]
 
 @app.template_global()
 def double(n):
@@ -108,6 +112,19 @@ def logout():
 @app.route('/test')
 def test():
     return render_template('test.html')
+
+@app.route('/todo', methods=['GET', 'POST'])
+def todo():
+    if request.method == 'POST':
+        print 'I am POST !'
+        print request.form
+        result = json.dumps({'status': 200})
+        return result 
+    if request.method == 'GET':
+        print 'I am GET'
+    #res = json.dumps({"data": todo})
+    return render_template('todo.html')
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0')
