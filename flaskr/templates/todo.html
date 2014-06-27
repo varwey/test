@@ -18,8 +18,8 @@
 </body>
 <script src="http://the5fireblog.b0.upaiyun.com/staticfile/jquery-1.10.2.js"></script>
 <script src="http://the5fireblog.b0.upaiyun.com/staticfile/underscore.js"></script>
-<script src="http://the5fireblog.b0.upaiyun.com/staticfile/backbone.js"></script>
-<script src="file:///home/wangweiwei/test/flaskr/static/js/localStorage.js"></script>
+<script src="{{url_for('static', filename='js/backbone.js')}}"></script>
+<!--<script src="file:///home/wangweiwei/test/flaskr/static/js/localStorage.js"></script>-->
 <script type="text/template" id="list-template">
     <div>
         <input type="checkbox" <%= status ? 'checked="checked"' : '' %> class="list-status">
@@ -29,11 +29,14 @@
 </script>
 <script type="text/javascript">
     var TodoModel = Backbone.Model.extend({
-        defaults: {
-            title: 'Nothing to do',
-            status: false
+        defaults: function () {
+            return {
+                id: todoCollection.nextOrder(),
+                title: 'Nothing to do',
+                status: false
+            }
         },
-        urlRoot: '/todo',
+        urlRoot: '/fetch',
         connectDatabase: function() {
             this.save(this, {
                 error: function() {
@@ -44,22 +47,23 @@
                 }
             });
         }
-        //look: function() {
-        //   console.log('Model title: ' + this);
-        //}
     });
 
     var TodoCollection = Backbone.Collection.extend({
         model: TodoModel,
-        url: '/todo',
+        url: '/fetch',
         initialize: function(option) {
 
-        }
+        },
+        nextOrder: function() {
+                if (this.length==0) return 1;
+                return this.last().get('id') + 1;
+            },
+        comparator: 'id'
     });
 
-    var todoCollection = new TodoCollection();
 
-    //todoCollection.fetch();
+    var todoCollection = new TodoCollection();
 
     var TodoListView = Backbone.View.extend({
         tagName: 'li',
@@ -86,7 +90,15 @@
         },
         drop: function() {
             console.log(this.model);
-            this.model.destroy();
+            this.model.destroy({
+                success: function () {
+                    console.log('success');
+                },
+                error: function () {
+                    console.log('error');
+                },
+                //data: {'id': this.model.get('id')}
+            });
         },
         liststatus: function() {
             console.log('liststatus: ' + this.model.get('status'));
