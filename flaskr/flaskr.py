@@ -93,7 +93,7 @@ def login():
             if request.form['password'] == app.config['PASSWORD']:
                 session['logged_in'] = True
                 flash('logged_in successfully !!!')
-                return redirect(url_for('show_entries'))
+                return redirect(url_for('todo'))
             else:
                 error = 'Invalid password'
         else:
@@ -124,19 +124,20 @@ def todo():
 
 @app.route('/fetch', methods=['GET', 'POST'])
 def fetch():
+    todo_change = {0: False, 1: True}
     todo_data = [{'title': 'asdsa', 'status': False, 'id': 1}, {'title': '123', 'status': True, 'id': 2}]
     # if request.method == 'DELETE':
     #     print 'I am DETELE'
     #     print request
     res = json.dumps(todo_data)
     todo_cur = g.db.execute('select * from entries')
-    todo_data = json.dumps([dict(id=row[0], title=row[1], status=row[2]) for row in todo_cur.fetchall()])
+    todo_data = json.dumps([dict(id=row[0],title=row[1], status=todo_change[row[2]]) for row in todo_cur.fetchall()])
     print todo_data
     return todo_data
 
 @app.route('/fetch/<int:delete_id>', methods=['DELETE', 'PUT'])
 def drop(delete_id):
-    todo_change = {}
+    todo_change = {False: 0, True: 1}
     mtd = request.method
     res = json.dumps({})
     if mtd == 'DELETE':
@@ -152,15 +153,23 @@ def drop(delete_id):
         print 'I am PUT'
         todo_insert = json.loads(request.data)
         print request.data
-        title = todo_insert['title']
-        print 'title %s'%title
-        sql = 'insert into entries(title, status) values(%s, 0)'%title
+        t_s = [todo_insert['title'],
+               todo_change.get(todo_insert['status'], 0),
+               todo_insert['id']
+               ]
+        #print status, todo_change.get(status)
+        #print 'title %s'%title
+        #sql = 'insert into entries(title, status) values(%s, 0)'%title
         try:
-            g.db.execute('insert into entries(title, status) values(?, ?)', [title, 0])
+            g.db.execute('insert into entries(title, status, id) values(?, ?, ?)', t_s)
             g.db.commit()
-            return res
         except Exception, e:
-            print 'I am PUT %s'%e
+         #   print 'I am PUT %s'%e
+            print 't_s: %s'%t_s
+            g.db.execute('update entries set title=?, status=? where id=?', t_s)
+            g.db.commit()
+        return res
+            
 
 if __name__ == '__main__':
     app.debug = True

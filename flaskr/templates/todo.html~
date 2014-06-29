@@ -90,7 +90,7 @@
             //        "<a class='destroy'>删除</a>");
             //$("#todo-list").append(todoItem);
             this.$el.html(this.template(this.model.toJSON()));
-            this.input = this.$('.edit');
+            this.input = this.$('.edit')
             return this;
         },
         drop: function() {
