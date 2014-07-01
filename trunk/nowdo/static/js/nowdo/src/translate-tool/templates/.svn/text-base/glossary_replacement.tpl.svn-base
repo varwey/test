@@ -1,1 +1,0 @@
-<a href="javascript:void(0);" class="glossary" data-source="<%=source %>"><%=source %></a>

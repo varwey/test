@@ -1,98 +1,0 @@
-10
-
-dir
-41447
-http://svn.xinggeq.com/svn/xingcloud/MultiLang/Utils/trunk
-http://svn.xinggeq.com/svn/xingcloud
-
-
-
-2014-05-26T02:49:59.664787Z
-41101
-niutong
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-7326169a-dace-4b16-b49d-0519486d49ab
-
-external_platform
-dir
-
-__init__.py
-file
-
-
-
-
-2014-06-30T06:30:30.615845Z
-1ce1693fa11b0256074f7d30990bc120
-2013-02-18T08:08:53.983491Z
-31131
-yeshiming
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-59
-
-debugging
-dir
-
-mime_types
-dir
-
-strs
-dir
-
-compressor
-dir
-
-dateutils
-dir
-
-sgmlparser
-dir
-
-self_trans
-dir
-
-files
-dir
-
-logs
-dir
-
-db
-dir
-
-urls
-dir
-
