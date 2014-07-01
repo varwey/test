@@ -1,0 +1,69 @@
+@charset "utf-8";
+
+/* Base style */
+html,dl,dt,dd,ul,li,body,form,ol,p,table,tr,td,input,textarea,select,button,h1,h2,h3,h4 {margin:0;padding:0;font-family:'Microsoft Yahei', arial, sans-serif;list-style-type:none;}
+h1,h2,h3,h4 {font-weight:normal;}
+img, button {border:0}
+a {text-decoration:none;color:#222;}
+a:hover {color:#000;}
+.clear:after {visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0}
+.clear {*zoom:1;}
+.none {display:none;}
+.block {display:block;}
+.left {float:left;display:inline;}
+.right {float:right;display:inline;}
+.both {font-weight:bold;}
+.autoCenter {width:980px;margin:0 auto;}
+.autoSize {font-size:12px;}
+.autoMin {min-width:980px;}
+.relative {position:relative;}
+.absolute {position:absolute;}
+.textCenter {text-align:center;}
+.textRight {text-align:right;}
+
+body {background-color:#000;}
+.name {margin-bottom:35px;}
+
+.banner {background:url(../images/banner.jpg) center top;height:634px;}
+.task {background-color:#FFF;padding:35px 0;}
+.task li {width:165px;height:48px;font-size:14px;background-color:#eaeaea;margin:0 0 25px 25px;padding-top:12px;cursor:pointer;color:#424242;}
+.task li.active, .task li.click {background-color:#007fe0;color:#fff;}
+
+.glory {background: #d9efff;padding:35px 0;height:270px;overflow:hidden;}
+.glory .name {margin-bottom:0;}
+.boy {width:299px;}
+.girl {width:700px;}
+.boy .buttons.active, .girl .buttons.active, .login .bt.active {background-color:#32a6ff;}
+.boy ul, .girl ul {right:10px;top:120px;font-size:14px;color:#fff;}
+.boy ul li, .girl ul li {background-color:#007fe0;line-height:34px;padding:0 20px;cursor:pointer;margin-right:5px;}
+
+.login {margin-left:40px;width:240px;}
+.login .name {margin-bottom:19px;}
+.login input {background-color:#FFF;width:198px;height:30px;border:0;color:#c3c3c3;padding:0 5px;margin-bottom:10px;}
+.login .bt {width:208px;color:#fff;font-size:14px;font-weight:bold;background-color:#007fe0;height:36px;}
+
+.welcome {color:#323232;}
+.welcome strong {color:#007FE0;margin:0 5px;}
+.welcome a {color:#323232;}
+.welcome a:hover {color:#000;}
+.myinfo span {padding:0 10px;}
+.myinfo {color:#b7caee;font-size:12px;margin-top:25px;}
+
+.datalist {background-color:#FFF;padding:35px 0;}
+.datalist a {color:#616161;cursor:default;}
+.datalist dl {width:220px;color:#424242;line-height:30px;padding-right:70px;background:url(../images/oli.png) right top repeat-y;}
+.datalist dl.list2 {padding-left:70px;}
+.datalist dl.list3 {padding:0 0 0 70px;background:none;}
+.datalist dt {height:92px;}
+
+#background {background-color:#000;z-index:999;left:0;top:0;}
+#dialog {background-color:#fff;z-index:1000;position:fixed;color:#494949;}
+#dialog .title {height:52px;background-color:#007FE0;color:#fff;text-indent:15px;line-height:52px;}
+#dialog .title h1 {font-size:20px;}
+#dialog .close {background:url(../images/close.png);width:22px;height:21px;right:15px;top:15px;}
+#dialog .content {padding:20px;}
+#dialog button {background-color:#007FE0;padding:10px;color:#fff;}
+
+.footer {background:#eeeeee;padding:35px 0;color:#7e7e7e;}
+.footer a:hover {color:#5c5c5c;}
+.footer a {margin-right:10px;color:#7e7e7e;}

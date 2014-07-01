@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/xingcloud/!svn/ver/41231/MultiLang/NowDo/trunk/nowdo/static/js/nowdo/src/login/templates
+END
+forget_password.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/xingcloud/!svn/ver/40813/MultiLang/NowDo/trunk/nowdo/static/js/nowdo/src/login/templates/forget_password.tpl
+END
+login.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/xingcloud/!svn/ver/40667/MultiLang/NowDo/trunk/nowdo/static/js/nowdo/src/login/templates/login.tpl
+END
+not_active.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/xingcloud/!svn/ver/40564/MultiLang/NowDo/trunk/nowdo/static/js/nowdo/src/login/templates/not_active.tpl
+END
+register_success.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/xingcloud/!svn/ver/40667/MultiLang/NowDo/trunk/nowdo/static/js/nowdo/src/login/templates/register_success.tpl
+END
+forget_password_success.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/xingcloud/!svn/ver/40667/MultiLang/NowDo/trunk/nowdo/static/js/nowdo/src/login/templates/forget_password_success.tpl
+END
+register.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/xingcloud/!svn/ver/41231/MultiLang/NowDo/trunk/nowdo/static/js/nowdo/src/login/templates/register.tpl
+END

@@ -1,0 +1,76 @@
+{% extends 'layout/base.html' %}
+{% import 'macros/frontend_macros.html' as frontend_macros %}
+
+{% block body_content %}
+    {% include 'layout/navbar.html' %}
+
+{#    {% call frontend_macros.render_page_block('face-section') %}#}
+{#        <div class="face-content">#}
+{#            <div class="desc">#}
+{#                <p>用兴趣沟通世界</p>#}
+{#                <p>让参与成为桥梁</p>#}
+{#            </div>#}
+{#            <div class="entrance">#}
+{#                <a class="btn btn-primary" href="{{ url_for('account.register') }}">#}
+{#                    立即加入#}
+{#                </a>#}
+{#                <a class="btn btn-primary" href="{{ url_for('frontend.index') }}">#}
+{#                    先逛逛看#}
+{#                </a>#}
+{#            </div>#}
+{#        </div>#}
+{#    {% endcall %}#}
+
+    <div class="banner bottom-gap">
+        <div class="container">
+           <div class="row">
+               <div class="col-xs-6">
+                   <div class="pre-view-link">
+                       <a href="{{ url_for('frontend.featured') }}">
+                           随便看看
+                           <i class="fa fa-angle-double-right"></i>
+                       </a>
+                   </div>
+               </div>
+               <div class="col-xs-6">
+                    <div class="join-us">
+                        <div class="joined-count">
+                            有 <span class="count">6,5532</span> 人已经加入脑洞
+                        </div>
+                        <a class="btn-join-us" data-target="register" href="javascript: void(0);"></a>
+                    </div>
+               </div>
+           </div>
+        </div>
+    </div>
+    <div class="container">
+        {% for row in frontend_page_data_map.iteritems()|batch(2) %}
+            <div class="row">
+                {% for tag, data in row %}
+                    <div class="col-xs-6">
+                        {% call macros.render_panel_xc(tag, index_page_panel=True) %}
+                            <div class="panel-body">
+                                {% if data['tasks']|length > 0 %}
+                                    <div class="panel-image">
+                                        <img src="{{ data['tasks'][0].avatar_url() }}" alt=""/>
+                                    </div>
+                                    <ul class="panel-list list-unstyled">
+                                        {% for task in data['tasks'] %}
+                                            <li>
+                                                <a href="{{ task.task_link }}">
+                                                    {{ task.name|truncate(18, true) }}
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    没有任务
+                                {% endif %}
+                            </div>
+                        {% endcall %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

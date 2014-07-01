@@ -1,4 +1,40 @@
 {% extends "layout.html" %}
+{% block header %}
+    <script type="text/javascript" >
+        $(function () {
+           var LoginModel = Backbone.Model.extend({
+			defaults: function () {
+				return {
+					username: 'varwey',
+					password: 'varwey'
+				}
+			},
+			initialize: function () {
+
+			},
+			urlRoot: '/login'
+            });
+            var LoginView = Backbone.View.extend({
+                el: "#userlogin",
+                initialize: function () {
+                    //console.log(this.$el);
+                },
+                events: {
+                    "click #upenter": "upenter"
+                },
+                upenter: function () {
+                    //console.log('this is upenter');
+                    //console.log(this.$el.find('.userenter'));
+                    var msg = this.$el.find('.userenter');
+                    var sendmsg = new LoginModel({username: msg.first().val(), password: msg.last().val()});
+                    console.log(JSON.stringify(sendmsg));
+                    JSON.stringify(sendmsg.save());
+                }
+            });
+            var loginView =new LoginView();
+        });
+	</script>
+{% endblock %}
 {% block body %}
 	<h2>Login</h2>
 	{% if error %}
@@ -15,31 +51,4 @@
 		</dl>
 	</form>
 	</div>
-	<script type="text/javascript" >
-		var LoginModel = Backbone.Model.extend({
-			defaults: function () {
-				return {
-					username: 'varwey',
-					password: 'varwey'
-				}
-			},
-			initialize: function () {
-				
-			},
-			urlRoot: '/login'
-		});
-		var loginModel = LoginModel();
-		var LoginView = Backbone.View.extend({
-			el: $("#userlogin"),
-			initialize: function () {
-			},
-			events: {
-				"click #upenter": "upenter"
-			},
-			upenter: function () {
-				console.log('this is upenter');
-			}
-		});
-		var loginView = LoginView();
-	</script>
 {% endblock %}

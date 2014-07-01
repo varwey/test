@@ -1,0 +1,50 @@
+{% extends "layout/layout.html" %}
+
+{% block content %}
+    <div class="panel panel-xc">
+        <div class="panel-heading">
+            我管理的小组
+        </div>
+        <ul class="list-group">
+            {% for group in groups %}
+                {% if group.my_role != 2 %}
+                <li class="list-group-item">
+                    <a href="{{ url_for('group.group_home', group_id=group.id) }}">{{ group.group_name }}</a>
+                    <div class="list-group-item-meta">
+                        <span class="time-label">
+                            {{ group.created_date }}
+                        </span>
+                    </div>
+                </li>
+                {% endif %}
+            {% else %}
+                <li class="list-group-item">没有管理任何小组</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="panel panel-xc">
+        <div class="panel-heading">
+            我加入的小组
+        </div>
+        <ul class="list-group">
+            {% for group in groups %}
+                {% if group.my_role == 2 %}
+                <li class="list-group-item">
+                    <a href="{{ url_for('group.group_home', group_id=group.id) }}">{{ group.group_name }}</a>
+                    <div class="list-group-item-meta">
+                        <span class="time-label">
+                            {{ group.created_date }}
+                        </span>
+                    </div>
+                </li>
+                {% endif %}
+            {% else %}
+                <li class="list-group-item">没有管理任何小组</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
+

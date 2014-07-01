@@ -1,0 +1,13 @@
+{
+  "family": "nowdo",
+  "name": "jquery-ui",
+  "version": "1.10.4",
+  "spm": {
+    "output": [
+      "jquery-ui.js"
+    ],
+    "alias": {
+      "$": "$"
+    }
+  }
+}

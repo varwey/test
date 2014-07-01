@@ -1,0 +1,48 @@
+{% extends 'layout/layout.html' %}
+{% block content %}
+
+    {{ macros.setting_nav('common_setting', group.id) }}
+
+
+    {% call macros.render_panel_content() %}
+        <form action="{{ url_for('group.common_setting', group_id=group.id) }}" method="post">
+            {{ form.csrf_token }}
+            {{ form.id }}
+            <div class="form-group">
+                {{ form.group_name.label }}
+                {{ form.group_name(class="form-control", placeholder="请填写小组名称") }}
+            </div>
+            <div class="form-group">
+                {{ form.group_description.label }}
+                {{ form.group_description(class="form-control", placeholder="请填写小组描述", rows=5) }}
+            </div>
+            <div class="form-group">
+                {{ form.group_tags.label }}
+                {{ form.group_tags(class="form-control", placeholder="请填写小组标签") }}
+                <span class="help-block">
+                    小组标签是描述小组的内容。标签作为关键词可以被用户搜索到。 多个标签之间用“，”分隔开。
+                </span>
+            </div>
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    {% for label, error_list in form.errors.iteritems() %}
+                        <p>{{ error_list[0] }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">更新</button>
+            </div>
+
+        </form>
+    {% endcall %}
+{% endblock %}
+
+{% block sidebar %}
+    <a class="bottom-gap btn btn-primary" href="{{ url_for('group.group_home', group_id=group.id) }}">回到：{{ group.group_name }}</a>
+    {% call macros.render_panel_xc('友情提示') %}
+        <div class="panel-body">
+            考虑到中国法律法规和相关政策的要求,脑洞不欢迎色情、激进话题、意识形态方面的讨论, 并保留解散这类主题小组的权利。
+        </div>
+    {% endcall %}
+{% endblock %}

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: "微软雅黑", Arial, Helvetica, sans-serif;
+        }
+
+        p {
+            line-height: 25px;
+        }
+        .indent4{
+            text-indent: 4em;
+        }
+
+        .email_content {
+            max-width: 960px;
+            margin: 50px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: rgb(51, 153, 102);
+        }
+
+        .text-strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="email_content">
+    <h1>Xingcloud</h1>
+    <h4>亲爱的小伙伴，您好：</h4>
+
+    <p>有客户申请开启项目，其信息如下：</p>
+    <p class='indent4'><span class="text-strong">项目名称：</span> {{ service_name }} </p>
+    <p class='indent4'><span class="text-strong">用户邮箱：</span> {{ email }} </p>
+    <p class='indent4'><span class="text-strong">验证信息：</span> {{ verify_info }} </p>
+    <p class='indent4'><span class="text-strong">申请时间：</span> {{ apply_date }} </p>
+</div>
+</body>
+</html>

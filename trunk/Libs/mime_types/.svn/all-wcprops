@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/xingcloud/!svn/ver/31131/MultiLang/Utils/trunk/mime_types
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/xingcloud/!svn/ver/31131/MultiLang/Utils/trunk/mime_types/__init__.py
+END
+mime.types
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/xingcloud/!svn/ver/31131/MultiLang/Utils/trunk/mime_types/mime.types
+END
+mime_types.py
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/xingcloud/!svn/ver/31131/MultiLang/Utils/trunk/mime_types/mime_types.py
+END

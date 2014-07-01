@@ -1,0 +1,16 @@
+{% extends "account/base/account_layout.html" %}
+
+{% block content %}
+    <div class="alert alert-{{ category }} text-center">
+        {{ _(info or '恭喜您，成功注册脑洞协作翻译平台，激活邮件已经发送到您的邮箱：' + email) }}。
+        {% if resend_email_url %}
+            <a href="{{ resend_email_url }}">重新发送</a>
+        {% endif %}
+        {% if login_url %}
+            <a href="{{ login_url }}">立即登录</a>
+        {% endif %}
+        {% if reset_pwd_url %}
+            <a href="{{ reset_pwd_url }}">找回密码</a>
+        {% endif %}
+    </div>
+{% endblock %}

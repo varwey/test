@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/xingcloud/!svn/ver/40001/MultiLang/KFiles/trunk/kfile/translation/file/xml
+END
+xml_wordhandler.py
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/xingcloud/!svn/ver/39696/MultiLang/KFiles/trunk/kfile/translation/file/xml/xml_wordhandler.py
+END
+xml_filehandler.py
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/xingcloud/!svn/ver/39696/MultiLang/KFiles/trunk/kfile/translation/file/xml/xml_filehandler.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/xingcloud/!svn/ver/39668/MultiLang/KFiles/trunk/kfile/translation/file/xml/__init__.py
+END
+xml_escape.py
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/xingcloud/!svn/ver/39668/MultiLang/KFiles/trunk/kfile/translation/file/xml/xml_escape.py
+END
+xpath.py
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/xingcloud/!svn/ver/40001/MultiLang/KFiles/trunk/kfile/translation/file/xml/xpath.py
+END

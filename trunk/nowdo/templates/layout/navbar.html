@@ -1,0 +1,72 @@
+<nav class="navbar navbar-xc navbar-static-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ url_for('frontend.frontend') }}"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse">
+            {% if not current_user.is_authenticated() %}
+                <div class="navbar-right">
+                    <a class="btn navbar-btn login-pop-btn" data-target="login" href="javascript: void(0);">登录</a>
+                    <a class="btn navbar-btn register-pop-btn" data-target="register" href="javascript: void(0);">注册</a>
+                </div>
+            {% endif %}
+
+            {% if current_user.is_authenticated() %}
+            <div class="nav navbar-nav navbar-right">
+                <div class="navbar-content">
+                    <div class="navbar-search">
+                        <a href="javascript:void(0);" title="搜索标签" class="navbar-search-button">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    <input type="text" placeholder="搜索标签、主题" class="navbar-search-input">
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <ul class="nav navbar-nav navbar-right" style='margin-right:3.2%'>
+                {% if current_user.is_authenticated() %}
+                    <li>
+                        <a href="{{ url_for('frontend.frontend')}}">
+                            首页
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('frontend.explore')}}">
+                            浏览发现
+                        </a>
+                    </li>
+                    <li>
+                        {% if current_user.has_mail %}
+                            <a href="{{ url_for('mail.index')}}" data-toggle="tooltip" data-placement="bottom" title="有未读邮件">
+                                脑邮
+                                <span class="badge has_mail">
+                                    <i class="fa fa-envelope-o"></i>
+                                </span>
+                            </a>
+                        {% else %}
+                            <a href="{{ url_for('mail.index')}}">
+                                脑邮
+                            </a>
+                        {% endif %}
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ current_user.nickname }} <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url_for('personal.index', user_id=current_user.id) }}">{{ _('我的脑洞') }}</a></li>
+                            <li><a href="{{ url_for('personal.my_profile') }}">{{ _('我的账号') }}</a></li>
+{#                            <li><a href="{{ url_for('glossary.index') }}">{{ _('我的术语') }}</a></li>#}
+                            {% if current_user.is_admin %}
+                                <li><a href="{{ url_for('management.index') }}">{{ _('管理') }}</a></li>
+                            {% endif %}
+                            <li><a href="{{ url_for('account.logout') }}">{{ _('退出登录') }}</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

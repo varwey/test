@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/xingcloud/!svn/ver/39696/MultiLang/KFiles/trunk/kfile/utils/translate
+END
+distribute_translate.py
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/xingcloud/!svn/ver/39696/MultiLang/KFiles/trunk/kfile/utils/translate/distribute_translate.py
+END
+trans_seq_file.py
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/xingcloud/!svn/ver/39696/MultiLang/KFiles/trunk/kfile/utils/translate/trans_seq_file.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/xingcloud/!svn/ver/39696/MultiLang/KFiles/trunk/kfile/utils/translate/__init__.py
+END
+file_integrate.py
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/xingcloud/!svn/ver/39696/MultiLang/KFiles/trunk/kfile/utils/translate/file_integrate.py
+END

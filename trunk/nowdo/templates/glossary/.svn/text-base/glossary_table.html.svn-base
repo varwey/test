@@ -1,0 +1,79 @@
+{% extends "layout/layout.html" %}
+
+{% block content %}
+
+    {% call macros.render_panel_content('术语表：%s' % glossary_table.name) %}
+        <div>
+            <strong>
+                源语言：
+            </strong>
+            {{ supported_languages[glossary_table.source_language] }}
+        </div>
+        <div>
+            <strong>
+                目标语言：
+            </strong>
+            {{ supported_languages[glossary_table.target_language] }}
+        </div>
+
+        <div>
+            总共 {{ glossary_table.glossaries|length }} 个术语
+        </div>
+    {% endcall %}
+
+    {% call macros.render_panel_content(use_list=True) %}
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <strong>
+                            源词
+                        </strong>
+                    </div>
+                    <div class="col-xs-5">
+                        <strong>
+                            目标词
+                        </strong>
+                    </div>
+                    <div class="col-xs-2 text-right">
+                        <strong>
+                            操作
+                        </strong>
+                    </div>
+                </div>
+            </li>
+            {% for glossary in glossary_table.glossaries %}
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            {{ glossary.source }}
+                        </div>
+                        <div class="col-xs-5">
+                            {{ glossary.target }}
+                        </div>
+                        <div class="col-xs-2 text-right meta">
+                            <a href="{{ url_for('glossary.edit_glossary', glossary_id=glossary.id) }}">编辑</a> |
+                            <a href="{{ url_for('glossary.delete_glossary', glossary_id=glossary.id) }}">删除</a>
+                        </div>
+                    </div>
+                </li>
+            {% else %}
+                <li class="list-group-item">
+                    该术语表中没有术语
+                </li>
+            {% endfor %}
+        </ul>
+    {% endcall %}
+
+    <div>
+        <a class="btn btn-primary" href="{{ url_for('glossary.create_glossary', glossary_table_id=glossary_table.id) }}">
+            创建术语
+        </a>
+    </div>
+
+
+{% endblock %}
+
+{% block sidebar %}
+    <a class="bottom-gap btn btn-primary" href="{{ url_for('glossary.index') }}">回到：我的术语</a>
+{% endblock %}

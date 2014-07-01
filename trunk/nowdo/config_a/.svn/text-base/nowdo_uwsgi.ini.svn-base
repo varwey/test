@@ -1,0 +1,14 @@
+[uwsgi]
+chmod = 777
+gid = kratos
+uid = kratos
+buffer-size = 65535
+master = true
+no-orphans = true
+memory-report = true
+
+; Supervisord will chdir to kratos
+module = nowdo:application
+socket = /tmp/nowdo_uwsgi_a.sock
+stats = /tmp/nowdo_uwsgi_stats_a.sock
+pidfile = /home/kratos/run/nowdo_uwsgi_a.pid

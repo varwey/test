@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/xingcloud/!svn/ver/38123/MultiLang/Utils/trunk/sgmlparser
+END
+attr_i18n_worker.py
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/xingcloud/!svn/ver/34209/MultiLang/Utils/trunk/sgmlparser/attr_i18n_worker.py
+END
+base_i18n_worker.py
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/xingcloud/!svn/ver/31601/MultiLang/Utils/trunk/sgmlparser/base_i18n_worker.py
+END
+constant.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/xingcloud/!svn/ver/34209/MultiLang/Utils/trunk/sgmlparser/constant.py
+END
+url_i18n_worker.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/xingcloud/!svn/ver/31601/MultiLang/Utils/trunk/sgmlparser/url_i18n_worker.py
+END
+text_i18n_worker.py
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/xingcloud/!svn/ver/31601/MultiLang/Utils/trunk/sgmlparser/text_i18n_worker.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/xingcloud/!svn/ver/31601/MultiLang/Utils/trunk/sgmlparser/__init__.py
+END

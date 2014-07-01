@@ -1,0 +1,98 @@
+{% extends 'layout/layout.html' %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+        seajs.use(['nowdo', '$'], function(nowdo, $){
+            $( document ).ready(function(){
+                nowdo.trigger.addLikeTrigger('.like-btn');
+                nowdo.comment.addCommentListTrigger('.comment-btn');
+                nowdo.trigger.addToggleHorizontalJoinGroupTrigger('.join-group');
+                nowdo.trigger.addToggleHorizontalFollowUserTrigger('.follow-user');
+                nowdo.trigger.addToggleExpandTrend(".expand-trend");
+                nowdo.trigger.addToggleExpandTrend(".part-text img");
+                nowdo.trigger.addToggleExpandTrend(".full-text img")
+
+                new nowdo.publisher.PublisherView();
+                $('.fancybox').fancybox({
+                    padding: 0,
+                    type: 'image',
+                    helpers: {
+                        overlay: {
+                            locked: false
+                        }
+                    }
+                });
+            });
+        });
+
+    </script>
+{% endblock %}
+
+{% block content %}
+    {{ macros.render_publisher(create_task_form, url_for('task.create_task')) }}
+    <div class="trends">
+        {{ macros.render_trends_list(trends_list, supported_languages, current_user=current_user) }}
+    </div>
+    {{ macros.render_pagination(trends_pagination, 'frontend.index') }}
+{% endblock %}
+
+{% block sidebar %}
+    {{ macros.render_user_profile_card(current_user, extra_class="index") }}
+{#    <a href="{{ url_for('group.create_group') }}" class="btn btn-primary btn-block bottom-gap">#}
+{#        <i class="fa fa-plus"></i>#}
+{#        创建小组#}
+{#    </a>#}
+
+    {% if featured_tasks|length > 0 %}
+        {% call macros.render_panel_xc('精选文章', extra_css='blue-heading') %}
+                {{ macros.render_task_list(featured_tasks, show_avatar=False, truncate=12, show_time=False) }}
+        {% endcall %}
+    {% endif %}
+
+
+    {% call macros.render_panel_xc('我加入的小组', extra_link=url_for('group.create_group'), extra_link_title='创建小组') %}
+        <div class="panel-body">
+            {{ macros.render_group_list(joined_groups, with_member_count=False, avatar_only=True) }}
+            {% if not joined_groups|length > 0 %}
+                <p>
+                您还没有加入小组
+                </p>
+                <p>
+                    <a class="btn btn-success btn-sm" href="{{ url_for('group.create_group') }}">
+                        <i class="fa fa-plus"></i>
+                        创建一个
+                    </a>
+                </p>
+            {% endif %}
+        </div>
+    {% endcall %}
+
+    {% if followed_users|length > 0 %}
+        {% call macros.render_panel_xc('我关注的用户') %}
+            <div class="panel-body">
+                {{ macros.render_user_list(followed_users, avatar_only=True) }}
+            </div>
+        {% endcall %}
+    {% endif %}
+
+    {% if hot_groups|length > 0 %}
+        {% call macros.render_panel_xc('热门小组') %}
+            <div class="panel-body" style="padding:0">
+                {{ macros.render_big_horizontal_group_card_list(hot_groups) }}
+            </div>
+        {% endcall %}
+    {% endif %}
+
+    {% if passionate_users_pagination.object_list|length > 0 %}
+        {% call macros.render_panel_xc('活跃用户') %}
+            <div class="panel-body" style="padding:0">
+{#                {{ macros.render_user_list(passionate_users_pagination.object_list, user_id_trends_count_map, avatar_only=True) }}#}
+                {{ macros.render_big_horizontal_user_list(passionate_users_pagination.object_list) }}
+            </div>
+        {% endcall %}
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,139 @@
+@font-family: 'Microsoft Yahei', "微软雅黑";
+@font-size: 14px;
+
+@content-width: 989px;
+
+@archive-card-width: 220px;
+@archive-card-height: 130px;
+
+//背景色
+@bg-color: #ededef;
+//header
+@header-height: 79px;
+@header-bg-color: #002454;
+@header-btn-height:29px;
+@header-btn-width:80px;
+//footer
+@footer-link-group-bg-color: #e0e0e0;
+
+//Trend
+@trend-heading-font-size: 18px;
+@trend-heading-font-color: #846147;
+
+//Meta
+@meta-font-size: 12px;
+@meta-font-color: #bbb;
+
+//Panel
+@panel-border-radius: 10px;
+@panel-heading-bg-color: #f3f3f3;
+@panel-heading-font-color: #484848;
+// 首页Panel heading字体大小
+@big-panel-heading-font-size: 18px;
+
+//Content
+@content-heading-font-size: 26px;
+
+//Button
+@blue-btn-bg-color: #0076ee;
+
+@bootstrap-primary-color: #428bca;
+
+.meta{
+  font-size: @meta-font-size;
+  color: @meta-font-color;
+}
+
+.bottom-gap{
+  display: block;
+  margin-bottom: 20px;
+}
+
+.top-gap{
+  margin-top: 20px;
+}
+
+.clear-fix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.box-shadow(@param){
+  -webkit-box-shadow: @param;
+     -moz-box-shadow: @param;
+          box-shadow: @param;
+}
+
+.text-shadow(@param){
+  -webkit-text-shadow: @param;
+     -moz-text-shadow: @param;
+          text-shadow: @param;
+}
+
+.border-radius(@param){
+  -webkit-border-radius: @param;
+     -moz-border-radius: @param;
+          border-radius: @param;
+}
+
+.transform(@param){
+  -webkit-transform: @param;     /* Safari 和 Chrome */
+      -ms-transform: @param; 	/* IE 9 */
+     -moz-transform: @param; 	/* Firefox */
+       -o-transform: @param; 	/* Opera */
+          transform: @param;
+}
+
+.transition(@param){
+  -webkit-transition: @param;
+     -moz-transition: @param;
+      -ms-transition: @param;
+       -o-transition: @param;
+          transition: @param;
+}
+
+.link-style(@color, @hover-color){
+  &:not(.btn){
+    color: @color;
+    &:link{
+      color: @color;
+    }
+    &:visited{
+      color: @color;
+    }
+    &:hover{
+      color: @hover-color;
+      text-decoration: none;
+    }
+    &:active{
+      color: @color;
+    }
+  }
+}
+
+.panel-content-shadow(){
+  .box-shadow(0 1px 1px rgba(0,0,0,.05););
+}
+
+.float-center{
+  //浮动居中
+  //需要视情况为 .float-center 设置固定的高度和宽度
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  &>div{
+    position: relative;
+    top: -50%;
+    left: -50%;
+  }
+}
+
+
+
+

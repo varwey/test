@@ -1,0 +1,43 @@
+{% extends 'layout/layout.html' %}
+
+{% block content %}
+
+    {% call macros.render_panel_content('通知') %}
+        <ul class="notice-list">
+            {% set first=True %}
+            {% for notice in my_notices %}
+                {% set target_user = notice.sender %}
+                <li class="notice {% if not notice.is_read %}unread{% endif %} {% if first %}first-notice{% endif %}">
+                    {% set first=False %}
+                    <a class="notice-avatar" href="{{ url_for('personal.index', user_id=target_user.id) }}">
+                        <img class="media-object" src="{{ target_user.avatar_url() }}" alt="{{ target_user.nickname }}">
+                    </a>
+                    <div class="notice-heading">
+                        <span class="pull-right meta">
+                            {{ notice.created_date|delta }}
+                        </span>
+                    </div>
+                    <div class="notice-text">
+                        {% if notice.type == 0 %}
+                        <a href="{{ url_for('personal.index', user_id=target_user.id) }}">{{ target_user.nickname }}</a> 关注了你
+                        {% elif notice.type == 1 %}
+                        <a href="{{ url_for('personal.index', user_id=target_user.id) }}">{{ target_user.nickname }}</a> 评论了你的主题
+                            <a href="{{ notice.target.task.task_link }}">{{ notice.target.task.name }}</a>
+                        {% endif %}
+                    </div>
+                </li>
+            {% else %}
+                <p>
+                    没有通知...
+                </p>
+
+            {% endfor %}
+        </ul>
+
+    {% endcall %}
+
+{% endblock %}
+
+{% block sidebar %}
+    {{ macros.render_user_profile_card(current_user, extra_class="index") }}
+{% endblock %}

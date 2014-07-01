@@ -1,0 +1,13 @@
+{% extends "personal/base.html" %}
+
+{% block content %}
+    {{ macros.my_home_nav(owner) }}
+
+    {% call macros.render_panel_content() %}
+        {{ macros.task_nav(owner) }}
+        {{ macros.render_time_archive_task_list(participated_task_pagination.object_list) }}
+    {% endcall %}
+
+    {{ macros.render_pagination(participated_task_pagination, 'personal.participated_tasks', owner) }}
+
+{% endblock %}

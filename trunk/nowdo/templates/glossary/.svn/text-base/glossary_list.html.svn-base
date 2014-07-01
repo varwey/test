@@ -1,0 +1,41 @@
+{% extends "glossary/base.html" %}
+
+{% block content %}
+    {{ macros.my_home_nav(current_user) }}
+
+    {% call macros.render_panel_content(h2_title="%s 的术语表" % task.name) %}
+{#        {{ macros.glossary_nav('glossary_table', no_gap=True) }}#}
+        <table class="table" style="margin-bottom: 0;">
+            <thead>
+                <tr>
+                    <th>原词</th>
+                    <th>目标词</th>
+                    <th>语言</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for glossary in glossaries %}
+                    <tr>
+                        <td>{{ glossary.source }}</td>
+                        <td>{{ glossary.target }}</td>
+                        <td>[{{ glossary.tar_lang|upper }}] {{ supported_languages[glossary.tar_lang] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endcall %}
+
+    {{ macros.render_pagination(glossary_table_pagination, 'glossary.index') }}
+{% endblock %}
+
+{% block sidebar %}
+    {{ super() }}
+    <a class="btn btn-primary btn-block bottom-gap" href="{{ url_for('glossary.index') }}">
+        <i class="fa fa-reply"></i>
+        返回
+    </a>
+    <a class="btn btn-success btn-block" href="{{ task.read_link() }}" target="_blank">
+        <i class="fa fa-globe"></i>
+        继续翻译该主题
+    </a>
+{% endblock %}

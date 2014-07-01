@@ -1,0 +1,58 @@
+{% extends 'frontend/base/explore_base.html' %}
+
+{% block content %}
+    {{ super() }}
+{#    {% call macros.render_panel_content() %}#}
+{#        <a class="tag {% if not cur_tag %}active{% endif %}" href="{{ url_for('frontend.explore') }}">ALL</a>#}
+{#        {% for tag in hot_tags %}#}
+{#            {{ macros.render_tag(tag, active_if=cur_tag) }}#}
+{#        {% endfor %}#}
+{#    {% endcall %}#}
+{##}
+{#    {% call macros.render_panel_content(h2_title=_('热门小组')) %}#}
+{#        {{ macros.render_horizontal_group_card_list(hot_groups_pagination.object_list, current_user=current_user) }}#}
+{#    {% endcall %}#}
+{##}
+{#    {% call macros.render_panel_content(h2_title=_('活跃用户')) %}#}
+{#        {{ macros.render_user_list(passionate_users_pagination.object_list, user_id_trends_count_map, large_size=True) }}#}
+{#    {% endcall %}#}
+
+    {% call macros.render_panel_content() %}
+        <ul class="tag_task_list">
+            {% for tag, count in task_tags %}
+                <li class="tag_task">
+                    <h3>
+                        <a href="{{ url_for('frontend.tag_view', tag=tag.tag_name) }}">
+                            {{ tag.tag_name }}
+                        </a>
+                    </h3>
+                    <div class="meta">
+                        主题数：{{ count }}
+                    </div>
+                    <div class="tasks">
+                        {% for task in tag.tasks() %}
+                            <div class="task-item"
+                                 {% if task.summery_image_url %}style="background: url({{ task.summery_image_url }}) center center;"{% endif %}>
+                                {% if not task.summery_image_url %}
+                                    <div class="task-name">
+                                        {{ task.name }}
+                                    </div>
+                                    <div class="meta">
+                                        {{ task.get_creator().nickname }}
+                                    </div>
+                                    <div class="meta">
+                                        {{ task.created_date|delta }}
+                                    </div>
+                                {% endif %}
+                                <a href="{{ url_for('task.task_view',task_id=task.id) }}" class="hover">
+                                    {{ task.name }}
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endcall %}
+
+{% endblock %}

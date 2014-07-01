@@ -1,0 +1,103 @@
+{% extends 'layout/layout.html' %}
+
+{% block content %}
+    <div class="panel panel-default panel-content">
+        <div class="panel-heading">
+            <h2>
+                翻译管理
+                {% if not task.is_finished %}
+                    {% if not task.is_translating %}
+                        <a class="btn btn-success pull-right" href="{{ url_for('task.open_task', task_id=task.id) }}">
+                            <i class="fa fa-check-circle"></i>
+                            <span class="btn-text">
+                                开启翻译
+                            </span>
+                        </a>
+                    {% else %}
+                        <a class="btn btn-info  pull-right" data-task_id="{{ task.id }}" href="{{ url_for('task.close_task', task_id=task.id) }}">
+                            <i class="fa fa-minus-circle"></i>
+                            <span class="btn-text">关闭翻译</span>
+                        </a>
+                    {% endif %}
+                {% endif %}
+            </h2>
+        </div>
+        <ul class="list-group" style="margin-top: 20px;">
+            {% for item in task.all_language_translate_progress %}
+                <li class="list-group-item clearfix">
+                    <div class="meta">
+                    <span class="language-label">
+                        <i class="fa fa-globe"></i>
+                        [ {{ item[0]|upper }} ] {{ supported_languages[item[0]] }}
+                    </span>
+                    <span class="pull-right ops">
+                        {% if task.is_translate_finished(item[0]) %}
+                            <a href="{{ url_for('task.download', task_id=task.id, tar_lang=item[0]) }}">
+                                <i class="fa fa-download"></i>
+                                下载翻译结果
+                            </a>
+                            <a href="{{ url_for('task.redo_translate', task_id=task.id, tar_lang=item[0]) }}">
+                                <i class="fa fa-repeat"></i>
+                                继续翻译
+                            </a>
+                            <a href="{{ task.task_link }}">
+                                <i class="fa fa-book"></i>
+                                阅读
+                            </a>
+                        {% else %}
+                            <a href="{{ url_for('task.end_translate', task_id=task.id, tar_lang=item[0]) }}">
+                                <i class="fa fa-gavel"></i>
+                                完成翻译
+                            </a>
+                        {% endif %}
+                        {% if task.is_translating %}
+                            <a href="{{ task.read_link() }}" target="_blank">
+                                <i class="fa fa-book"></i>
+                                翻译
+                            </a>
+
+                            <a href="{{ task.approve_link() }}" target="_blank">
+                                <i class="fa fa-check"></i>
+                                确认
+                            </a>
+                        {% endif %}
+                    </span>
+                    </div>
+
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success"
+                             role="progressbar"
+                             aria-valuenow="60"
+                             aria-valuemin="0"
+                             aria-valuemax="100" style="width: {{ item[3] }}%;">
+                            {#                            {{ item[3] }}%#}
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    {% call macros.render_panel_content(h2_title="术语管理") %}
+
+    {% endcall %}
+{% endblock %}
+
+{% block sidebar %}
+    <a class="bottom-gap btn btn-primary" href="{{ url_for('personal.published_tasks', user_id=task.creator_id) }}">
+        <i class="fa fa-reply"></i>
+        回到我发布的任务
+    </a>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+        seajs.use(['nowdo', '$'], function(nowdo, $){
+            $(function(){
+                nowdo.trigger.addToggleActiveTaskTrigger('.active-task');
+            });
+        });
+    </script>
+{% endblock %}
+

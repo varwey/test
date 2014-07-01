@@ -1,0 +1,58 @@
+{% extends 'layout/layout.html' %}
+
+{% block content %}
+
+    {% call macros.render_panel_content('我的脑邮') %}
+        <ul class="dialogue-list">
+            {% for dialogue in my_dialogues %}
+                {% set target_user = dialogue.target_user() %}
+                <li class="dialogue bottom-gap {% if not dialogue.is_all_read %}unread{% endif %}">
+                    <a class="dialogue-avatar" href="{{ url_for('personal.index', user_id=target_user.id) }}">
+                        <img class="media-object" src="{{ target_user.avatar_url() }}" alt="{{ target_user.nickname }}">
+                    </a>
+                    <a href="{{ url_for('mail.mail_detail', dialogue_id=dialogue.id) }}" class="dialogue-content">
+                        <div class="dialogue-heading">
+                            {{ target_user.nickname }}
+                            <span class="pull-right meta">
+                                {% if not dialogue.is_all_read %}
+                                    <span class="text-info">
+                                       <i class="fa fa-warning"></i> 有未读邮件
+                                    </span>
+                                {% endif %}
+                                {{ dialogue.modified_date|delta }}
+                            </span>
+                        </div>
+                        <span class="dialogue-text">{{ dialogue.latest_mail_content }}</span>
+                    </a>
+                </li>
+            {% else %}
+                <p>
+                    还没有跟任何人交谈过...
+                </p>
+                <p>
+                    <a class="btn btn-primary btn-sm" href="{{ url_for('mail.choose') }}">给我关注的人写信</a>
+                </p>
+
+            {% endfor %}
+        </ul>
+
+    {% endcall %}
+
+{% endblock %}
+
+{% block sidebar %}
+    <a href="{{ url_for('mail.choose') }}" class="bottom-gap btn btn-primary">
+        <i class="fa fa-envelope-o"></i>
+        给我关注的人写信
+    </a>
+    {% call macros.render_panel_xc('温馨提示') %}
+        <div class="panel-body">
+            <p>
+                好朋友
+            </p>
+            <p>
+                一定要记得常联系哟...
+            </p>
+        </div>
+    {% endcall %}
+{% endblock %}

@@ -1,0 +1,12 @@
+{
+  "name": "fileupload",
+  "version": "9.5.2",
+  "family": "nowdo",
+  "spm": {
+    "alias": {
+      "$": "$",
+      "jquery-ui": "nowdo/jquery-ui/1.10.4/jquery-ui"
+    },
+    "output": ["fileupload.js"]
+  }
+}

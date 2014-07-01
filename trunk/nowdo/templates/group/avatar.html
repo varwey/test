@@ -1,0 +1,87 @@
+{% extends 'layout/layout.html' %}
+
+{% block extra_js %}
+    {{ macros.require_js('swfobject') }}
+    <script type="text/javascript" >
+
+        var flashvars = {
+            js_handler:"readyCallback",
+            swfID:"avatarEdit",
+            sourceAvatar:"{{ group.avatar_url(150) }}",
+            avatarLabel:"头像预览，请注意清晰度",
+            sourceLabel:"保存你的原图吧",
+            sourcePicAPI:"",
+            avatarAPI:"{{ url_for('group.avatar_upload', group_id=group.id) }}",
+            avatarSize:"150,150|80,80|50,50",
+            avatarSizeLabel:"大(150*150)|中(80*80)|小(50*50)"
+        };
+        var params = {
+            menu: "false",
+            scale: "noScale",
+            allowFullscreen: "true",
+            allowScriptAccess: "always",
+            bgcolor: "",
+            wmode: "transparent" // can cause issues with FP settings & webcam
+        };
+        var attributes = {
+            id:"avatarEditor"
+        };
+        swfobject.embedSWF(
+                "{{ url_for('static', filename="swf/avatarUpload.swf") }}",
+                "altContent", "100%", "100%", "10.0.0",
+                "http://swfs.sinaapp.com/expressInstall.swf",
+                flashvars, params, attributes);
+
+        var swf;
+
+        function getSWF(movieName)
+        {
+            if (navigator.appName.indexOf("Microsoft") != -1) {
+                return window[movieName];
+            } else {
+                return document.getElementById(movieName);
+            }
+        }
+
+        function readyCallback(obj)
+        {
+            if(obj.type == "avatarSuccess") {
+                alert("头像上传成功");
+                location.href = '{{ url_for('group.group_home', group_id=group.id) }}';
+            }
+            if(obj.type == "avatarError") {
+                alert("头像上传失败");
+                location.reload();
+            }
+
+            if(obj.type == "cancel") {
+                //取消编辑头像
+                location.reload();
+            }
+
+            //if(obj.type == "init") alert("flash初始化完成");
+            //if(obj.type == "sourcePicSuccess") alert("原图上传成功");
+            //if(obj.type == "sourcePicError") alert("原图上传失败");
+            //if(obj.type == "FileSelectCancel") alert("取消选取本机图片");
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+    {{ macros.setting_nav('avatar_manage', group.id) }}
+
+    {% call macros.render_panel_content() %}
+        <div class="avatar-uploader" style="height: 460px;">
+            <div id="altContent">这里是flash内容，请从<a href="http://www.adobe.com/go/getflashplayer">这里</a>下载安装FlashPlayer，以便查看该内容</div>
+        </div>
+    {% endcall %}
+{% endblock %}
+
+{% block sidebar %}
+    <a class="bottom-gap btn btn-primary" href="{{ url_for('group.group_home', group_id=group.id) }}">回到：{{ group.group_name }}</a>
+    {% call macros.render_panel_xc('友情提示') %}
+        <div class="panel-body">
+            考虑到中国法律法规和相关政策的要求,脑洞不欢迎色情、激进话题、意识形态方面的讨论, 并保留解散这类主题小组的权利。
+        </div>
+    {% endcall %}
+{% endblock %}

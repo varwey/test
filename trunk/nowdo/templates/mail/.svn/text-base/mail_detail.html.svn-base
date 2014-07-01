@@ -1,0 +1,56 @@
+{% extends 'layout/layout.html' %}
+
+{% block content %}
+
+    {% call macros.render_panel_content('与 %s 的脑邮' % target_user.nickname) %}
+        <ul class="mail-list">
+            {% for mail in mail_list %}
+                {% set sender = sender_receiver_map[mail.sender_id] %}
+                {% set position =  'left' if current_user.id != sender.id else 'right'%}
+                <li class="mail-item {{ position }}">
+                    <a class="avatar" href="{{ url_for('personal.index', user_id=sender.id) }}">
+                        <img src="{{ sender.avatar_url() }}" alt="{{ sender.nickname }}"/>
+                    </a>
+                    <div class="mail-content">
+                        <div class="arrow"></div>
+                        <div class="mail-body text-{{ position }}">
+                            {{ mail.content }}
+                        </div>
+                        <div class="mail-footer text-{{ position }}">
+                            <span class="meta">
+                                {{ mail.created_date }}
+                            </span>
+                        </div>
+                    </div>
+                </li>
+        {% endfor %}
+        </ul>
+    {% endcall %}
+
+    {% call macros.render_panel_content() %}
+        <form class="" action="{{ url_for('mail.write') }}" method="post" role="form">
+            {{ form.csrf_token }}
+            {{ form.receiver_id }}
+            <div class="form-group">
+                {{ form.mail_content(class="form-control", rows='5') }}
+            </div>
+            {% if form.errors.mail_content %}
+                <div class="alert alert-danger">
+                    {{ form.errors.mail_content[0] }}
+                </div>
+            {% endif %}
+            <button class="btn btn-primary" type="submit">{{ _('发送') }}</button>
+        </form>
+    {% endcall %}
+
+
+
+
+{% endblock %}
+
+{% block sidebar %}
+    <a href="{{ url_for('mail.index') }}" class="bottom-gap btn btn-primary">
+        <i class="fa fa-reply"></i>
+        回到我的脑邮邮箱
+    </a>
+{% endblock %}

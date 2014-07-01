@@ -1,0 +1,99 @@
+{% extends "glossary/base.html" %}
+
+{% block content %}
+    {{ macros.my_home_nav(current_user) }}
+    {% call macros.render_panel_content(use_list=True) %}
+        {{ macros.glossary_nav('checking-glossary', no_gap=True) }}
+        <ul class="list-group">
+            <form action="{{ url_for('glossary.pass_glossary') }}" id="pass-selected-glossary-form" method="post">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-1 text-right">
+                            <strong>
+                                选择
+                            </strong>
+                        </div>
+                        <div class="col-xs-4">
+                            <strong>
+                                源词
+                            </strong>
+                        </div>
+                        <div class="col-xs-4">
+                            <strong>
+                                目标词
+                            </strong>
+                        </div>
+                        <div class="col-xs-2">
+                            <strong>
+                                语言
+                            </strong>
+                        </div>
+                        <div class="col-xs-1 text-right">
+                            <strong>
+                                操作
+                            </strong>
+                        </div>
+                    </div>
+                </li>
+                {% for glossary in checking_glossary_pagination.object_list %}
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-1 text-center">
+                                <input type="checkbox" name="glossary_id" value="{{ glossary.id }}"/>
+                            </div>
+                            <div class="col-xs-4">
+                                {{ glossary.source }}
+                            </div>
+                            <div class="col-xs-4">
+                                {{ glossary.target }}
+                            </div>
+                            <div class="col-xs-2">
+                                {{ glossary.source_language|upper }}
+                                <i class="fa fa-random"></i>
+                                {{ glossary.target_language|upper }}
+                            </div>
+                            <div class="col-xs-1 text-right meta">
+                                <a href="{{ url_for('glossary.edit_checking_glossary', glossary_id=glossary.id) }}">编辑</a>
+                            </div>
+                        </div>
+                    </li>
+                {% else %}
+                    <li class="list-group-item" style="padding: 15px;">
+                        没有需要审核的术语
+                    </li>
+                {% endfor %}
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-1 text-center">
+                            <input type="checkbox" id="select-all"/>
+                        </div>
+                        <div class="col-xs-11">
+                            <select name="glossary_table_id" id="">
+                                {% for gt in glossary_tables %}
+                                    <option value="{{ gt.id }}">{{ gt.name }}</option>
+                                {% endfor %}
+                            </select>
+                            &nbsp;
+                            <a class="" id="pass-selected-glossary" href="javascript:void(0);">审核通过选中的术语</a>
+                        </div>
+                    </div>
+                </li>
+            </form>
+        </ul>
+    {% endcall %}
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        $(function(){
+            var pass_select_glossary_form = $('#pass-selected-glossary-form');
+           $('#pass-selected-glossary').click(function(){
+               pass_select_glossary_form.submit();
+           });
+           $('#select-all').change(function(e){
+               var cur_status = e.currentTarget.checked;
+               $('input[name=glossary_id]').prop('checked', cur_status);
+           });
+        });
+    </script>
+{% endblock %}

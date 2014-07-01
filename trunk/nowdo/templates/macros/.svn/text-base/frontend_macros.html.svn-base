@@ -1,0 +1,9 @@
+{% import 'macros/macros.html' as macros with context%}
+
+{% macro render_page_block(block_class) %}
+    <div class="page-block {{ block_class }}">
+        <div class="container">
+            {{ caller() }}
+        </div>
+    </div>
+{% endmacro %}

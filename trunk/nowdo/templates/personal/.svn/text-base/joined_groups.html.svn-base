@@ -1,0 +1,10 @@
+{% extends "personal/base.html" %}
+{% block content %}
+    {{ macros.my_home_nav(owner) }}
+
+    {% call macros.render_panel_content() %}
+        {{ macros.render_group_list(joined_groups_pagination.object_list, with_member_count=False) }}
+    {% endcall %}
+    {{ macros.render_pagination(joined_groups_pagination, 'personal.joined_groups', owner) }}
+
+{% endblock %}

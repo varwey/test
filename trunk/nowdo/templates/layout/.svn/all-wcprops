@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/xingcloud/!svn/ver/41427/MultiLang/NowDo/trunk/nowdo/templates/layout
+END
+login_modal.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/xingcloud/!svn/ver/41231/MultiLang/NowDo/trunk/nowdo/templates/layout/login_modal.html
+END
+frontend_navbar.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/xingcloud/!svn/ver/41274/MultiLang/NowDo/trunk/nowdo/templates/layout/frontend_navbar.html
+END
+navbar.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/xingcloud/!svn/ver/41381/MultiLang/NowDo/trunk/nowdo/templates/layout/navbar.html
+END
+base.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/xingcloud/!svn/ver/41427/MultiLang/NowDo/trunk/nowdo/templates/layout/base.html
+END
+layout.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/xingcloud/!svn/ver/41090/MultiLang/NowDo/trunk/nowdo/templates/layout/layout.html
+END
+footer.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/xingcloud/!svn/ver/40407/MultiLang/NowDo/trunk/nowdo/templates/layout/footer.html
+END

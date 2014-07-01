@@ -1,0 +1,26 @@
+{% extends "layout/base.html" %}
+
+{% block body_content %}
+    <div class="login-wrapper">
+        {% block banner %}
+            <div class="login-banner">
+                <div class="container">
+                    <a href="{{ url_for('frontend.frontend') }}">
+                        <div class="logo center-block"></div>
+                        <div class="title text-center">
+                            用兴趣沟通世界，让参与成为桥梁
+                        </div>
+                        {#                    <div class="buttons center-block">#}
+                        {#                        <a class="btn btn-primary" href="{{ url_for('account.login') }}">登 录</a>#}
+                        {#                        <a class="btn btn-info" href="{{ url_for('account.register') }}">注 册</a>#}
+                        {#                    </div>#}
+                    </a>
+
+                </div>
+            </div>
+        {% endblock %}
+        {% block content %}
+
+        {% endblock %}
+    </div>
+{% endblock %}

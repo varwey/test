@@ -1,0 +1,18 @@
+{% extends 'layout/layout.html' %}
+
+{% block content %}
+    {% block explore_nav %}
+        {{ macros.explore_nav() }}
+    {% endblock %}
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        seajs.use(['nowdo', '$'], function(nowdo, $){
+            $(function(){
+                nowdo.trigger.addToggleJoinGroupTrigger('.join-group');
+                nowdo.trigger.addToggleFollowUserTrigger('.follow-user');
+            });
+        });
+    </script>
+{% endblock %}

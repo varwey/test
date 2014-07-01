@@ -1,0 +1,72 @@
+{% extends 'frontend/base/explore_base.html' %}
+
+{% block content %}
+    {{ super() }}
+    {% call macros.render_panel_content() %}
+        <ul class="explore-group-list list-unstyled">
+            {% for group, member_count in hot_groups_pagination.object_list %}
+                <li class="group-item {{ 'left' if loop.index % 2 == 1 else '' }}">
+                    <div class="clearfix">
+                        {% if current_user.is_authenticated() and current_user.joined(group.id) %}
+                            <a href="javascript:void(0);" data-group_id="{{ group.id }}"
+                               class="join-group btn btn-success btn-sm pull-right">
+                                <i class="fa fa-minus"></i>
+                                <span class="btn-text">
+                                    退出小组
+                                </span>
+                            </a>
+                        {% else %}
+                            <a href="javascript:void(0);" data-group_id="{{ group.id }}"
+                               class="join-group btn btn-success btn-sm pull-right">
+                                <i class="fa fa-plus"></i>
+                                <span class="btn-text">
+                                    加入小组
+                                </span>
+                            </a>
+                        {% endif %}
+                        <div class="group-avatar pull-left">
+                            <img src="{{ group.avatar_url(50) }}" alt=""/>
+                        </div>
+                        <h3>
+                            <a href="{{ url_for('group.group_home', group_id=group.id) }}">
+                                {{ group.group_name }}
+                            </a>
+                            <span class="group-tags">
+                                {% for tag in group.tags %}
+                                    <a class="group-tag" href="{{ url_for('frontend.tag_view', tag=tag.tag_name) }}">
+                                        <i class="fa fa-tag"></i>
+                                        {{ tag.tag_name }}
+                                    </a>
+                                {% endfor %}
+
+                            </span>
+                        </h3>
+                    </div>
+
+                    <div class="tasks">
+                        {% for task in group.get_tasks(3) %}
+                            <div class="task-item"
+                                 {% if task.summery_image_url %}style="background: url({{ task.summery_image_url }}) center center;"{% endif %}>
+                                {% if not task.summery_image_url %}
+                                    <div class="task-name">
+                                        {{ task.name }}
+                                    </div>
+                                    <div class="meta">
+                                        {{ task.get_creator().nickname }}
+                                    </div>
+                                    <div class="meta">
+                                        {{ task.created_date|delta }}
+                                    </div>
+                                {% endif %}
+                                <a href="{{ url_for('task.task_view',task_id=task.id) }}" class="hover">
+                                    {{ task.name }}
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endcall %}
+
+{% endblock %}

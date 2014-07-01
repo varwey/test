@@ -1,0 +1,17 @@
+{% extends "layout/layout.html" %}
+
+{% block sidebar %}
+    {% include 'personal/personal_sidebar.html' %}
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+        seajs.use(['nowdo', '$'], function(nowdo, $){
+            $(function(){
+                nowdo.trigger.addToggleFollowUserTrigger('.follow');
+                nowdo.trigger.addToggleActiveTaskTrigger('.active-task');
+                nowdo.trigger.addLinkToTargetUrl('.link-to-target-url');
+            });
+        });
+    </script>
+{% endblock %}

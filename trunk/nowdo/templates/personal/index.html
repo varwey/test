@@ -1,0 +1,23 @@
+{% extends "personal/base.html" %}
+
+{% block content %}
+    {{ macros.my_home_nav(owner) }}
+
+    {% call macros.render_panel_content(h2_title='加入的小组') %}
+        {{ macros.render_group_list(joined_groups, with_member_count=False) }}
+    {% endcall %}
+
+
+
+    {{ macros.render_task_list_panel(published_task_pagination.object_list, supported_languages, list_title='发布的主题') }}
+
+    {{ macros.render_task_list_panel(participated_task_pagination.object_list, supported_languages, list_title='参与翻译的主题') }}
+
+    {{ macros.render_task_list_panel(liked_task_pagination.object_list, supported_languages, list_title='喜欢的主题') }}
+
+{#    {{ macros.render_list_title(_('发布的话题')) }}#}
+{#    {{ macros.render_topic_list(published_topic_pagination.object_list) }}#}
+{##}
+{#    {{ macros.render_list_title(_('评论的话题')) }}#}
+{#    {{ macros.render_topic_list(commented_topic_pagination.object_list) }}#}
+{% endblock %}

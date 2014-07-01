@@ -1,0 +1,57 @@
+{% extends "layout/layout.html" %}
+
+{% block content %}
+
+    {{ macros.account_nav(request.endpoint) }}
+
+    {% call macros.render_panel_content() %}
+        <form role="form" class="bottom-gap" action="{{ url_for('personal.my_profile') }}" method="post" role="form">
+            {{ form.csrf_token }}
+            <div class="form-group {% if form.errors.display_name %} has-error has-feedback {% endif %}">
+
+                {% if form.errors.display_name %}
+                    <label class="control-label" for="display_name">{{ form.errors.display_name[0] }}</label>
+                {% else %}
+                    <label class="control-label" for="display_name">{{ form.display_name.description }}</label>
+                {% endif %}
+
+                {{ form.display_name(class="form-control") }}
+
+                {% if form.errors.display_name %}
+                    <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {% endif %}
+
+            </div>
+            <div class="form-group">
+                <label for="#">邮箱</label>
+                <div class="">
+                    {{ current_user.email }}
+                    {% if current_user.is_active %}
+                        <span class="text-success">
+                        （已验证 <i class="fa fa-check"></i>）
+                    </span>
+                    {% else %}
+                        <span class="text-danger">
+                        （未验证 <i class="fa fa-times"></i>）
+                    </span>
+                    {% endif %}
+                </div>
+            </div>
+            <button class="btn btn-primary btn-sm" type="submit">{{ _('更新') }}</button>
+        </form>
+    {% endcall %}
+{% endblock %}
+
+{% block sidebar %}
+    {% call macros.render_panel_xc('要记得哟..') %}
+        <div class="panel-body">
+            <p>
+               <i class="fa fa-smile-o"></i> 给自己起一个响亮的昵称
+            </p>
+            <p>
+                <i class="fa fa-smile-o"></i> 给自己拍一张帅气的头像
+            </p>
+        </div>
+    {% endcall %}
+{% endblock %}
+

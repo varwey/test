@@ -1,0 +1,35 @@
+{% extends 'layout/layout.html' %}
+{% block content %}
+
+    {{ macros.setting_nav('service_bound', group.id) }}
+    <form action="{{ url_for('group.service_bound', group_id=group.id) }}" method="post">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ form.service_id.label }}
+            {{ form.service_id(class="form-control", placeholder="请填写项目ID") }}
+        </div>
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                {% for label, error_list in form.errors.iteritems() %}
+                    <p>{{ error_list[0] }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary pull-right">提交</button>
+        </div>
+
+    </form>
+{% endblock %}
+
+{% block sidebar %}
+    <a class="bottom-gap" href="{{ url_for('group.group_home', group_id=group.id) }}">回到：{{ group.group_name }}</a>
+    <div class="panel panel-xc">
+        <div class="panel-heading text-warning">
+            警告
+        </div>
+        <div class="panel-body">
+            考虑到中国法律法规和相关政策的要求,脑洞不欢迎色情、激进话题、意识形态方面的讨论, 并保留解散这类主题小组的权利。
+        </div>
+    </div>
+{% endblock %}

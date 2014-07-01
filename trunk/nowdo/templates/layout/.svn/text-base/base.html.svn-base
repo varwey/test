@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--
+
+    __/\\\\\_____/\\\____________________________________________________/\\\\\\\\\\\\___________________
+     _\/\\\\\\___\/\\\___________________________________________________\/\\\////////\\\_________________
+      _\/\\\/\\\__\/\\\___________________________________________________\/\\\______\//\\\________________
+       _\/\\\//\\\_\/\\\______/\\\\\______/\\____/\\___/\\___/\\\\\\\\\\\__\/\\\_______\/\\\______/\\\\\____
+        _\/\\\\//\\\\/\\\____/\\\///\\\___\/\\\__/\\\\_/\\\__\///////////___\/\\\_______\/\\\____/\\\///\\\__
+         _\/\\\_\//\\\/\\\___/\\\__\//\\\__\//\\\/\\\\\/\\\__________________\/\\\_______\/\\\___/\\\__\//\\\_
+          _\/\\\__\//\\\\\\__\//\\\__/\\\____\//\\\\\/\\\\\___________________\/\\\_______/\\\___\//\\\__/\\\__
+           _\/\\\___\//\\\\\___\///\\\\\/______\//\\\\//\\\____________________\/\\\\\\\\\\\\/_____\///\\\\\/___
+            _\///_____\/////______\/////_________\///__\///_____________________\////////////_________\/////_____
+
+
+-->
+<html lang="zh-CN">
+<head>
+    {% import 'macros/macros.html' as macros with context %}
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="{{ url_for("static", filename="images/favicon.ico") }}" type="image/x-icon">
+
+    {% block title %}
+        <title>{{ config.get('APP_TITLE') or _("脑洞 Now-Do | 协作翻译平台") }}</title>
+    {% endblock %}
+
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='libs/bootstrap/css/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='libs/font-awesome/css/font-awesome.min.css') }}">
+    {{ macros.require_css('summernote') }}
+    {{ macros.require_css('fancybox') }}
+    {% if config.get('DEBUG') %}
+        <link rel="stylesheet/less" type="text/css" href="{{ url_for('static', filename='less/custom.less', random = random) }}">
+        <script src="{{ url_for('static', filename='js/lib/less/less-1.3.3.min.js') }}"></script>
+    {% else %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom.css') }}">
+    {% endif %}
+
+    {% block extra_css %}
+    {% endblock %}
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div id="wrapper">
+        <div id="loading">
+            <div class="loading-content">
+                <img src="{{ url_for('static', filename="images/loading.gif") }}" alt=""/>
+            </div>
+        </div>
+
+        <div id="scroll-top">
+        </div>
+        {% block body_content %}
+        {% endblock %}
+
+
+    </div>
+
+    {% block footer %}
+        {% include "layout/footer.html" %}
+    {% endblock %}
+
+    {{ macros.require_seajs(config.get('DEBUG')) }}
+    <script src="{{ url_for('static', filename="js/lib/zeroclipboard/ZeroClipboard.js") }}"></script>
+    <script type="text/javascript">
+        seajs.use(['nowdo', '$'], function(nowdo, $){
+            $( document ).ready(function(){
+                nowdo.trigger.addLoginTrigger('.login-pop-btn');
+                nowdo.trigger.addRegisterTrigger('.register-pop-btn, .btn-join-us');
+                nowdo.trigger.addUserInfoPopOverTrigger('.user-info-pop');
+                nowdo.navbar.addNavbarSearch('.navbar-search-input');
+                nowdo.navbar.addClickNavbarSearchButton('.navbar-search-button');
+
+                $(window).off('scroll').scroll(function(){
+                    if ($(window).scrollTop()>100){
+                        $("#scroll-top").fadeIn();
+                    }
+                    else{
+                        $("#scroll-top").fadeOut();
+                    }
+                });
+
+                $("#scroll-top").click(function(){
+                    $('body, html').animate({scrollTop:0},1000);
+                    return false;
+                });
+            });
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

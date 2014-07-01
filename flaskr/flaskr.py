@@ -89,16 +89,19 @@ def add_entry():
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] == app.config['USERNAME']:
-            if request.form['password'] == app.config['PASSWORD']:
-                session['logged_in'] = True
-                flash('logged_in successfully !!!')
-                return redirect(url_for('todo'))
-            else:
-                error = 'Invalid password'
-        else:
-            error = 'Invalid username'
-    return render_template('login.html', error=error)
+         print 'POST'
+    #     if request.form['username'] == app.config['USERNAME']:
+    #         print 'username'
+    #         if request.form['password'] == app.config['PASSWORD']:
+    #             session['logged_in'] = True
+    #             flash('logged_in successfully !!!')
+    #             print 'aaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    #             return redirect(url_for('todo'))
+    #         else:
+    #             error = 'Invalid password'
+    #     else:
+    #         error = 'Invalid username'
+    # return render_template('login.html', error=error)
 
 @app.route('/logout')
 def logout():

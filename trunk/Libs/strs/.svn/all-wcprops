@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/xingcloud/!svn/ver/40624/MultiLang/Utils/trunk/strs
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/xingcloud/!svn/ver/31147/MultiLang/Utils/trunk/strs/__init__.py
+END
+word_cnt.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/xingcloud/!svn/ver/34973/MultiLang/Utils/trunk/strs/word_cnt.py
+END
+coding_util.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/xingcloud/!svn/ver/40593/MultiLang/Utils/trunk/strs/coding_util.py
+END
+translate_ignore.py
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/xingcloud/!svn/ver/33360/MultiLang/Utils/trunk/strs/translate_ignore.py
+END
+urlquote.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/xingcloud/!svn/ver/34047/MultiLang/Utils/trunk/strs/urlquote.py
+END
+word_filter.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/xingcloud/!svn/ver/31529/MultiLang/Utils/trunk/strs/word_filter.py
+END
+unicode_language_detect.py
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/xingcloud/!svn/ver/32039/MultiLang/Utils/trunk/strs/unicode_language_detect.py
+END
+currency_rules.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/xingcloud/!svn/ver/32004/MultiLang/Utils/trunk/strs/currency_rules.py
+END
+utf8_utils.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/xingcloud/!svn/ver/36260/MultiLang/Utils/trunk/strs/utf8_utils.py
+END
+opencc_wrapper.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/xingcloud/!svn/ver/40624/MultiLang/Utils/trunk/strs/opencc_wrapper.py
+END

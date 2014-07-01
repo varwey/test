@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/xingcloud/!svn/ver/41276/MultiLang/NowDo/trunk/nowdo/static/js/nowdo/src/trigger/templates
+END
+follow.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/xingcloud/!svn/ver/40967/MultiLang/NowDo/trunk/nowdo/static/js/nowdo/src/trigger/templates/follow.tpl
+END
+un_follow.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/xingcloud/!svn/ver/40967/MultiLang/NowDo/trunk/nowdo/static/js/nowdo/src/trigger/templates/un_follow.tpl
+END
+user_info_pop.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/xingcloud/!svn/ver/41276/MultiLang/NowDo/trunk/nowdo/static/js/nowdo/src/trigger/templates/user_info_pop.tpl
+END
+horizontal_follow.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/xingcloud/!svn/ver/41264/MultiLang/NowDo/trunk/nowdo/static/js/nowdo/src/trigger/templates/horizontal_follow.tpl
+END

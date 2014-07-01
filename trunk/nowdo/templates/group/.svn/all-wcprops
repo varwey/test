@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/xingcloud/!svn/ver/41400/MultiLang/NowDo/trunk/nowdo/templates/group
+END
+task_manage.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/xingcloud/!svn/ver/40952/MultiLang/NowDo/trunk/nowdo/templates/group/task_manage.html
+END
+setting.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/xingcloud/!svn/ver/41274/MultiLang/NowDo/trunk/nowdo/templates/group/setting.html
+END
+avatar.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/xingcloud/!svn/ver/40902/MultiLang/NowDo/trunk/nowdo/templates/group/avatar.html
+END
+topic.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/xingcloud/!svn/ver/40407/MultiLang/NowDo/trunk/nowdo/templates/group/topic.html
+END
+task_translate.html
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/xingcloud/!svn/ver/41243/MultiLang/NowDo/trunk/nowdo/templates/group/task_translate.html
+END
+create_group.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/xingcloud/!svn/ver/41274/MultiLang/NowDo/trunk/nowdo/templates/group/create_group.html
+END
+my_groups.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/xingcloud/!svn/ver/39974/MultiLang/NowDo/trunk/nowdo/templates/group/my_groups.html
+END
+create_task.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/xingcloud/!svn/ver/40902/MultiLang/NowDo/trunk/nowdo/templates/group/create_task.html
+END
+common_setting.html
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/xingcloud/!svn/ver/40902/MultiLang/NowDo/trunk/nowdo/templates/group/common_setting.html
+END
+service_bound.html
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/xingcloud/!svn/ver/41274/MultiLang/NowDo/trunk/nowdo/templates/group/service_bound.html
+END
+members.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/xingcloud/!svn/ver/40902/MultiLang/NowDo/trunk/nowdo/templates/group/members.html
+END
+task_read.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/xingcloud/!svn/ver/41400/MultiLang/NowDo/trunk/nowdo/templates/group/task_read.html
+END
+create_topic.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/xingcloud/!svn/ver/40902/MultiLang/NowDo/trunk/nowdo/templates/group/create_topic.html
+END
+task.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/xingcloud/!svn/ver/41274/MultiLang/NowDo/trunk/nowdo/templates/group/task.html
+END
+task_preview.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/xingcloud/!svn/ver/40783/MultiLang/NowDo/trunk/nowdo/templates/group/task_preview.html
+END
+task_edit.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/xingcloud/!svn/ver/40950/MultiLang/NowDo/trunk/nowdo/templates/group/task_edit.html
+END
+index.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/xingcloud/!svn/ver/40974/MultiLang/NowDo/trunk/nowdo/templates/group/index.html
+END
